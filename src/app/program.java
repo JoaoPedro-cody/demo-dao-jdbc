@@ -32,9 +32,21 @@ public class program {
             System.out.println(obj);
         }
 
+        /*
+        System.out.println();
         System.out.println("=== Test 4: seller insert ===");
         Seller newSeller = new Seller(null, "Jose", "greg@gmail.com", new Date(), 4000.0, department);
         sellerDao.insert(newSeller);
         System.out.println("new id " + newSeller.getId());
+        */
+
+        System.out.println();
+        System.out.println("=== Test 5: seller insert ===");
+        sellerDao.deleteById(9);
+        list = sellerDao.findaAll();
+        for (Seller obj : list){
+            System.out.println(obj);
+        }
+
     }
 }

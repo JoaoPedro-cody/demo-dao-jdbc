@@ -46,7 +46,7 @@ public class SellerDaoJDBC implements SellerDao {
                     int id = rs.getInt(1);
                     obj.setId(id);
                 }
-                DB.closeResultSet(rs);
+                    DB.closeResultSet(rs);
             }
             else {
                 throw new DbException("Unexpec");
@@ -66,7 +66,17 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteById(Integer id) {
-
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement(
+                    "DELETE FROM seller " +
+                            "WHERE Id = ?"
+            );
+            st.setInt(1,id);
+            int row = st.executeUpdate();
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override
